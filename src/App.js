@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from "jquery";
 import './App.css';
 
 import Jumbotron from './components/jumbotron';
@@ -8,18 +9,24 @@ class App extends Component {
   constructor() {
     super();
 
-    this.state= {photos: [
-      {location: "Saint Lucia",
-        url: "https://www.stlucianewsonline.com/wp-content/uploads/2015/10/St.-Lucia-Pitons2.jpg",
-      },
-      {location: "Thailand",
-        url: "http://www.phsproperty.com/wp-content/uploads/2017/01/phuket2-3.jpg",
-      },
-      {location: "Saint Vincent And The Grenadines",
-        url: "https://mychaletfinder.com/countries/summer-villas/st-vincent-grenadines/headers/st-vincent-grenadines-mychaletfinder.jpg",
-      }
-    ]};
-  }
+    
+    $.ajax({
+        headers: { 'Authorization':'Client-ID 49d8632e19189c214e4af423f5c4e263fd41a2e5464def15ba352b93c8673864'},
+        url: "https://api.unsplash.com/photos??page=1&query=beach",
+        success: function(data) {
+          const result = data.map(photo => ({
+                id:photo.id,
+                url: photo.urls.regular
+              })
+            )
+
+          this.state ={photos: result};
+        }
+
+      })
+  };  
+
+
 
   render() {
     return (

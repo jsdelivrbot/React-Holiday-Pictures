@@ -7,7 +7,7 @@ class PhotosList extends React.Component{
     let photoItems = this.props.photos.map(photo => {
       return (
           <div className="col-lg-4">
-            <PhotoItem photo={photo} key={photo.location} />
+            <PhotoItem photo={photo} key={photo.id} />
         </div>
         )
      
