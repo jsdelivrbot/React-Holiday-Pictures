@@ -3,9 +3,9 @@ import React from "react";
 class PhotoItem extends React.Component{
   render(){
     return (
-      <li>
-        <img src={this.props.photo.url} alt={this.props.photo.location} />
-      </li>
+      <div>
+        <img src={this.props.photo.url} alt={this.props.photo.location} className="img-thumbnail img-responsive"/>
+      </div>
     );
   };
 }

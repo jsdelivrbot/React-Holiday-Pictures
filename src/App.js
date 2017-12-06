@@ -22,8 +22,10 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <PhotosList photos={this.state.photos}/>
+      <div className="container">
+        <div className="row">
+          <PhotosList photos={this.state.photos}/>
+        </div>
       </div>
     );
   }
