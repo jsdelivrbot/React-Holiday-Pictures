@@ -8,25 +8,35 @@ import PhotosList from './components/photosList';
 class App extends Component {
   constructor() {
     super();
+    this.state = {
+      photos: []
+    }
+    }
 
-    
+
+  getPhotos(){
     $.ajax({
-        headers: { 'Authorization':'Client-ID 49d8632e19189c214e4af423f5c4e263fd41a2e5464def15ba352b93c8673864'},
-        url: "https://api.unsplash.com/photos??page=1&query=beach",
-        success: function(data) {
-          const result = data.map(photo => ({
-                id:photo.id,
-                url: photo.urls.regular
-              })
-            )
+      headers: { 'Authorization':'Client-ID 49d8632e19189c214e4af423f5c4e263fd41a2e5464def15ba352b93c8673864'},
+      url: "https://api.unsplash.com/photos??page=1&query=sand",
+      success: function(data) {
+      const result = data.map(photo => ({
+          id:photo.id,
+          url: photo.urls.regular
+          })
+        )
+      this.setState({photos: result}, function(){
+        console.log(this.state);
+      });
+      }.bind(this),
+      error: function(err){
+        console.log(err);
+      }
+    })
+  }
 
-          this.state ={photos: result};
-        }
-
-      })
-  };  
-
-
+  componentWillMount(){
+    this.getPhotos();
+  }
 
   render() {
     return (
