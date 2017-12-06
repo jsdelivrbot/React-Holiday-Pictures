@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import PhotosList from './components/photosList'
+import Jumbotron from './components/jumbotron';
+import PhotosList from './components/photosList';
 
 class App extends Component {
   constructor() {
@@ -22,7 +23,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
+        <Jumbotron />
         <div className="row">
           <PhotosList photos={this.state.photos}/>
         </div>
